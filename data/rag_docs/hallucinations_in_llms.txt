@@ -1,0 +1,3 @@
+Hallucinations in large language models occur when the model generates information that
+is not supported by its training data or provided context. This often happens when the
+model is forced to answer questions beyond its knowledge or without grounding.

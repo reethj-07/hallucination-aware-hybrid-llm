@@ -1,0 +1,11 @@
+The paper "Attention Is All You Need" introduces the Transformer architecture,
+which replaces recurrent and convolutional layers with self-attention mechanisms.
+
+Key contributions:
+- Self-attention enables parallel sequence processing
+- Scaled dot-product attention improves stability
+- Multi-head attention captures different representation subspaces
+- Positional encodings inject sequence order
+
+This architecture significantly improved performance and scalability
+in machine translation and later became the foundation for modern LLMs.

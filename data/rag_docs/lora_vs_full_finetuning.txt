@@ -1,0 +1,3 @@
+LoRA fine-tuning freezes the base model weights and inserts low-rank trainable matrices
+into attention layers. This significantly reduces memory usage and training cost while
+preserving performance for downstream tasks.
