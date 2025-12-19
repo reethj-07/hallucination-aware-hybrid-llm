@@ -9,3 +9,7 @@ __pycache__/
 # Environments
 venv/
 .env
+# FAISS artifacts (generated locally)
+rag/faiss_index/
+rag/*.index
+rag/*.pkl
