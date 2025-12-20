@@ -1,3 +1,11 @@
+"""
+NOTE:
+Phi-2 is used as a lightweight baseline to demonstrate
+limitations of smaller instruction models in structured
+technical explanations. For interview-grade responses,
+see Phi-3 + LoRA inference.
+"""
+
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 

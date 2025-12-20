@@ -1,3 +1,10 @@
+"""
+NOTE:
+This script is for CPU-only correctness validation.
+Phi-3 Mini inference is slow on CPU.
+For final outputs, see Colab GPU inference notebook.
+"""
+
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
