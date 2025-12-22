@@ -3,26 +3,19 @@ import requests
 
 API_URL = "http://localhost:8000/query"
 
-st.title("Hallucination-Aware RAG Assistant")
+st.set_page_config(page_title="Hallucination-Aware RAG", layout="centered")
 
-query = st.text_input("Ask a question")
+st.title("🧠 Hallucination-Aware RAG System")
 
-rag_enabled = st.toggle("Enable RAG", value=True)
+query = st.text_input("Ask a question:")
+use_rag = st.checkbox("Use RAG", value=True)
 
-if st.button("Ask"):
-    payload = {
-        "query": query,
-        "use_rag": rag_enabled
-    }
-
-    response = requests.post(API_URL, json=payload).json()
+if st.button("Submit") and query:
+    resp = requests.post(
+        API_URL,
+        json={"query": query, "use_rag": use_rag},
+        timeout=120
+    )
 
     st.subheader("Answer")
-    st.write(response["answer"])
-
-    if rag_enabled:
-        st.subheader("Retrieved Context")
-        st.write(response["context"])
-
-    st.subheader("Grounded")
-    st.write(response["grounded"])
+    st.write(resp.json()["answer"])
