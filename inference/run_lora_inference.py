@@ -5,7 +5,6 @@ from peft import PeftModel
 BASE_MODEL_ID = "microsoft/Phi-3-mini-4k-instruct"
 LORA_PATH = "models/phi3_lora_final"
 
-_device = "cpu"
 _model = None
 _tokenizer = None
 
@@ -55,4 +54,10 @@ def generate_text(prompt: str) -> str:
             pad_token_id=_tokenizer.eos_token_id
         )
 
-    return _tokenizer.decode(output[0], skip_special_tokens=True)
+    decoded = _tokenizer.decode(output[0], skip_special_tokens=True)
+
+    # Remove echoed prompt
+    if prompt in decoded:
+        decoded = decoded.replace(prompt, "").strip()
+
+    return decoded

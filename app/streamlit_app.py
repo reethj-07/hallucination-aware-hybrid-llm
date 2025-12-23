@@ -1,21 +1,31 @@
 import streamlit as st
-import requests
+from rag.rag_inference import run_rag_pipeline
 
-API_URL = "http://localhost:8000/query"
-
-st.set_page_config(page_title="Hallucination-Aware RAG", layout="centered")
+st.set_page_config(
+    page_title="Hallucination-Aware RAG",
+    layout="centered"
+)
 
 st.title("🧠 Hallucination-Aware RAG System")
 
 query = st.text_input("Ask a question:")
 use_rag = st.checkbox("Use RAG", value=True)
 
-if st.button("Submit") and query:
-    resp = requests.post(
-        API_URL,
-        json={"query": query, "use_rag": use_rag},
-        timeout=120
-    )
+if st.button("Submit"):
+    if not query.strip():
+        st.warning("Please enter a question")
+    else:
+        with st.spinner("Thinking..."):
+            result = run_rag_pipeline(
+                query=query,
+                use_rag=use_rag
+            )
 
-    st.subheader("Answer")
-    st.write(resp.json()["answer"])
+        st.markdown("### ✅ Answer")
+        st.write(result["answer"])
+        st.caption(f"RAG used: {result['used_rag']}")
+
+        if result["used_rag"]:
+            with st.expander("🔍 Retrieved documents"):
+                for i, doc in enumerate(result["retrieved_documents"], 1):
+                    st.markdown(f"**Document {i}:**\n{doc}")

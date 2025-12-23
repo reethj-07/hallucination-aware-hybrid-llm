@@ -1,100 +1,182 @@
-# 🧠 Hallucination-Aware RAG System
-
-A production-style **Hallucination-Aware Retrieval-Augmented Generation (RAG)** system that enforces **context-grounded responses** using a LoRA-fine-tuned Phi-3 Mini language model.
-
-This project demonstrates how to **detect and suppress hallucinations** in LLM outputs by combining retrieval-based grounding with strict inference-time constraints.
+# 🧠 Hallucination-Aware Hybrid LLM System  
+### Retrieval-Augmented Generation with LoRA-Fine-Tuned Phi-3
 
 ---
 
-## 🚀 Key Features
+## 🚀 Overview
 
-- 🔎 **FAISS-based document retrieval** for grounding responses in external knowledge
-- 🧩 **LoRA fine-tuning** of Phi-3 Mini for parameter-efficient adaptation
-- 🛑 **Hallucination guardrails** that block unsupported model outputs
-- 🧠 **Context-only generation enforcement** (no prior knowledge leakage)
-- 📊 **Retrieved document inspection** for transparency and debugging
-- 🌐 **Interactive Streamlit UI**, deployed on Hugging Face Spaces
+Large Language Models (LLMs) frequently hallucinate when answering questions without sufficient grounding.  
+This project implements a **hallucination-aware Retrieval-Augmented Generation (RAG) system** that enforces **context-only generation**, ensuring responses are strictly derived from retrieved documents.
 
----
-
-## 🏗️ Architecture Overview
-
+The system integrates:
+- **FAISS-based dense retrieval**
+- **QLoRA fine-tuned Phi-3 Mini (4k)**
+- **Strict prompt-level hallucination guardrails**
+- **Transparent retrieved-document inspection**
+- **Interactive Streamlit UI deployed on Hugging Face Spaces**
 
 ---
 
-## 📂 Project Structure
+## ✨ Key Features
+
+- 🔍 **FAISS-based vector retrieval** for grounding LLM responses in external knowledge  
+- 🧩 **QLoRA fine-tuning of Phi-3 Mini (4k)** for parameter-efficient adaptation  
+- 🛑 **Hallucination guardrails** enforcing context-only generation  
+- 📜 **Explicit abstention mechanism** when answers are not present in retrieved documents  
+- 🔎 **Retrieved document inspection** for explainability and debugging  
+- 🔄 **Dual inference modes**: RAG vs Non-RAG comparison  
+- 🌐 **Streamlit UI deployment** on Hugging Face Spaces  
+
+---
+
+## 🏗 Architecture Overview
+
+```mermaid
+flowchart LR
+    User --> UI[Streamlit UI]
+    UI --> RAG[RAG Pipeline]
+    RAG --> Embedder[SentenceTransformer]
+    Embedder --> FAISS[FAISS Index]
+    FAISS --> Docs[Top-K Documents]
+    Docs --> Prompt[Constrained Prompt Builder]
+    Prompt --> LLM[Phi-3 Mini + LoRA]
+    LLM --> Answer
+    Answer --> UI
+
+## 🧠 Hallucination Control Logic
+
+The system enforces correctness using **two independent and complementary safeguards** to minimize hallucinations.
+
+### 1️⃣ Retrieval Constraint (Knowledge Grounding)
+
+- User queries are embedded using a SentenceTransformer
+- Top-K relevant documents are retrieved via FAISS
+- **Only retrieved documents** are passed to the language model as context
+- No external or prior model knowledge is allowed during generation
+
+If no relevant document is retrieved, the system forces abstention.
+
+---
+
+### 2️⃣ Prompt-Level Generation Constraints
+
+The language model is instructed with **strict generation rules**:
+
+```text
+- Answer ONLY using the provided context
+- Do NOT use prior knowledge
+- Do NOT repeat the question
+- If the answer is not present in the context, reply EXACTLY:
+  "Not found in retrieved documents"
+
+
+💡 **Why this section matters**  
+Recruiters immediately see: *you understand hallucinations at a system-design level, not just prompt tricks.*
+
+---
+
+## ✅ SECTION 2 — RAG Pipeline (Step-by-Step)
+
+This shows **engineering clarity**.
+
+```markdown
+## 🔁 Retrieval-Augmented Generation (RAG) Pipeline
+
+The RAG pipeline follows a deterministic, auditable sequence:
+
+1. **Query Encoding**  
+   The user query is converted into a dense vector embedding.
+
+2. **Document Retrieval**  
+   FAISS performs similarity search over the indexed document corpus.
+
+3. **Context Assembly**  
+   The top-K retrieved documents are concatenated into a single context block.
+
+4. **Constrained Prompt Construction**  
+   The context and query are injected into a hallucination-safe prompt template.
+
+5. **LLM Generation**  
+   A LoRA-fine-tuned Phi-3 Mini model generates the final response.
+
+6. **Abstention Check**  
+   If the answer is not grounded in context, the model explicitly refuses.
+
+## ⚖️ Inference Modes: RAG vs Non-RAG
+
+The system supports two inference modes for comparison and evaluation:
+
+### ❌ Non-RAG Mode
+- Direct LLM inference without document retrieval
+- Model may rely on internal parametric knowledge
+- Susceptible to hallucinations
+
+### ✅ RAG Mode (Default)
+- Responses are grounded in retrieved documents
+- Hallucination guardrails enforced
+- Transparent inspection of retrieved context
+
+This dual-mode setup highlights the **impact of retrieval grounding on factual correctness**.
+
+## 📁 Project Structure
+
+```text
+hallucination-aware-hybrid-llm/
+│
+├── app/                     # Streamlit UI
+├── api/                     # FastAPI endpoints
+├── inference/               # LoRA-based inference logic
+├── models/                  # Fine-tuned LoRA adapters
+├── rag/                     # Retrieval & hallucination-aware pipeline
+│   └── faiss_index/         # Vector index + documents
+├── training/                # QLoRA fine-tuning scripts
+├── experiments/             # Jupyter notebooks
+├── Dockerfile
+├── requirements.txt
+└── README.md
 
 
 ---
 
-## 🧪 Hallucination Control Logic
+## ✅ SECTION 5 — Example Behavior (VERY GOOD FOR DEMOS)
 
-The system enforces correctness using **two independent safeguards**:
+```markdown
+## 🧪 Example Behavior
 
-1. **Prompt-level constraints**
-   - Model is instructed to answer *only* from retrieved context
-   - Explicit refusal clause if information is missing
+| Mode | Question | Output |
+|-----|---------|--------|
+| ❌ Non-RAG | What are bottlenecks of attention? | Hallucinated / unsupported |
+| ✅ RAG | What is quantization? | Grounded answer + sources |
+| ❌ Non-RAG | Random ML trivia | Model may hallucinate |
+| ✅ RAG | Unsupported query | "Not found in retrieved documents" |
 
-2. **Post-generation validation**
-   - Model output is checked against retrieved documents
-   - Unsupported answers are replaced with:
-     ```
-     Not found in retrieved documents
-     ```
 
-This ensures the model **cannot hallucinate confidently**.
+## 🛠 Tech Stack
 
----
+| Component | Technology |
+|---------|------------|
+| LLM | Microsoft Phi-3 Mini (4k) |
+| Fine-Tuning | QLoRA (PEFT) |
+| Retrieval | FAISS |
+| Embeddings | Sentence-Transformers |
+| Backend | Python, PyTorch |
+| UI | Streamlit |
+| Deployment | Hugging Face Spaces |
 
-## 🧠 Example Behavior
+## 🔮 Future Improvements
 
-| Query | RAG Enabled | Output |
-|-----|------------|-------|
-| "What is RAG?" | ✅ | Grounded, factual answer |
-| "What is quantization?" | ❌ | Free-form LLM answer |
-| "Bottlenecks of attention mechanism?" | ✅ | Refusal if not in docs |
+- Confidence-based abstention scoring
+- Cross-encoder reranking for improved retrieval precision
+- Adaptive top-K retrieval
+- Hallucination rate benchmarking
+- Token-level document attribution
+- Self-verification and reflection loops
 
----
+## 🔮 Future Improvements
 
-## 🌐 Live Demo
-
-👉 **Hugging Face Space**:  
-https://huggingface.co/spaces/attentionseeker/hallucination-aware-rag
-
----
-
-## 🛠️ Tech Stack
-
-- **LLM**: Phi-3 Mini (Microsoft)
-- **Fine-tuning**: LoRA (PEFT)
-- **Vector Store**: FAISS
-- **Embeddings**: SentenceTransformers
-- **Frontend**: Streamlit
-- **Deployment**: Hugging Face Spaces
-
----
-
-## 📌 Why This Project Matters
-
-This project addresses a critical limitation of modern LLMs — **hallucinations** — by demonstrating a practical, deployable solution that balances generation power with factual correctness.
-
-It is especially relevant for:
-- Enterprise QA systems
-- Technical interview assistants
-- Trust-sensitive AI applications
-
----
-
-## 📈 Future Improvements
-
-- Add confidence scores based on retrieval similarity
-- Highlight evidence spans used in answers
-- Support multi-hop retrieval
-- Introduce evaluation metrics (faithfulness, groundedness)
-- GPU-accelerated inference for lower latency
-
----
-
-## 📜 License
-
-MIT
+- Confidence-based abstention scoring
+- Cross-encoder reranking for improved retrieval precision
+- Adaptive top-K retrieval
+- Hallucination rate benchmarking
+- Token-level document attribution
+- Self-verification and reflection loops

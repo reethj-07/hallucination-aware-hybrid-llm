@@ -6,7 +6,9 @@ from inference.run_lora_inference import generate_text
 INDEX_PATH = "rag/faiss_index/index.faiss"
 DOCS_PATH = "rag/faiss_index/docs.pkl"
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+TOP_K = 3
 
+# Load FAISS + docs
 index = faiss.read_index(INDEX_PATH)
 
 with open(DOCS_PATH, "rb") as f:
@@ -16,17 +18,25 @@ embedder = SentenceTransformer(EMBED_MODEL)
 
 
 def run_rag_pipeline(query: str, use_rag: bool = True):
+    retrieved_docs = []
+
     if use_rag:
-        emb = embedder.encode([query])
-        _, I = index.search(emb, k=3)
-        context = "\n".join(documents[i] for i in I[0])
+        query_embedding = embedder.encode([query])
+        _, I = index.search(query_embedding, k=TOP_K)
+        retrieved_docs = [documents[i] for i in I[0]]
+        context = "\n".join(retrieved_docs)
     else:
         context = ""
 
     prompt = f"""
-Use ONLY the context below.
-If answer not present, say:
-"Not found in retrieved documents"
+You are a senior machine learning engineer answering a technical question.
+
+STRICT RULES:
+- Answer ONLY using the provided context
+- Do NOT use prior knowledge
+- Do NOT repeat the question
+- If the answer is not present in the context, reply EXACTLY:
+  "Not found in retrieved documents"
 
 Context:
 {context}
@@ -34,13 +44,28 @@ Context:
 Question:
 {query}
 
-Answer:
+Final Answer:
 """
 
-    output = generate_text(prompt)
+    answer = generate_text(prompt).strip()
+
+    # 🔒 Hallucination Guard
+    if use_rag:
+        context_lower = context.lower()
+        answer_lower = answer.lower()
+
+        supported = any(
+            token in context_lower
+            for token in answer_lower.split()
+            if len(token) > 5
+        )
+
+        if not supported:
+            answer = "Not found in retrieved documents"
 
     return {
         "query": query,
-        "answer": output,
-        "used_rag": use_rag
+        "answer": answer,
+        "used_rag": use_rag,
+        "retrieved_documents": retrieved_docs
     }
