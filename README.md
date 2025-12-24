@@ -81,9 +81,6 @@ text
   "Not found in retrieved documents"
 
 
-💡 *Why this section matters*  
-Recruiters immediately see: you understand hallucinations at a system-design level, not just prompt tricks.
-
 ---
 
 ##  SECTION 2 — RAG Pipeline (Step-by-Step)
@@ -151,7 +148,7 @@ hallucination-aware-hybrid-llm/
 
 ## SECTION 5 — Example Behavior (VERY GOOD FOR DEMOS)
 
-```markdown
+
 ##  Example Behavior
 
 | Mode | Question | Output |
