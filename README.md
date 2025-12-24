@@ -19,17 +19,17 @@ The system integrates:
 
 ## ✨ Key Features
 
-- 🔍 **FAISS-based vector retrieval** for grounding LLM responses in external knowledge  
-- 🧩 **QLoRA fine-tuning of Phi-3 Mini (4k)** for parameter-efficient adaptation  
-- 🛑 **Hallucination guardrails** enforcing context-only generation  
-- 📜 **Explicit abstention mechanism** when answers are not present in retrieved documents  
-- 🔎 **Retrieved document inspection** for explainability and debugging  
-- 🔄 **Dual inference modes**: RAG vs Non-RAG comparison  
-- 🌐 **Streamlit UI deployment** on Hugging Face Spaces  
+-  **FAISS-based vector retrieval** for grounding LLM responses in external knowledge  
+-  **QLoRA fine-tuning of Phi-3 Mini (4k)** for parameter-efficient adaptation  
+-  **Hallucination guardrails** enforcing context-only generation  
+-  **Explicit abstention mechanism** when answers are not present in retrieved documents  
+-  **Retrieved document inspection** for explainability and debugging  
+-  **Dual inference modes**: RAG vs Non-RAG comparison  
+-  **Streamlit UI deployment** on Hugging Face Spaces  
 
 ---
 
-## 🏗 Architecture Overview
+##  Architecture Overview
 
 ```mermaid
 flowchart LR
@@ -43,7 +43,8 @@ flowchart LR
     LLM --> Answer
     Answer --> UI
 
-## 🧠 Hallucination Control Logic
+---
+## Hallucination Control Logic
 
 The system enforces correctness using **two independent and complementary safeguards** to minimize hallucinations.
 
@@ -75,12 +76,12 @@ Recruiters immediately see: *you understand hallucinations at a system-design le
 
 ---
 
-## ✅ SECTION 2 — RAG Pipeline (Step-by-Step)
+##  SECTION 2 — RAG Pipeline (Step-by-Step)
 
 This shows **engineering clarity**.
 
 ```markdown
-## 🔁 Retrieval-Augmented Generation (RAG) Pipeline
+##  Retrieval-Augmented Generation (RAG) Pipeline
 
 The RAG pipeline follows a deterministic, auditable sequence:
 
@@ -102,7 +103,7 @@ The RAG pipeline follows a deterministic, auditable sequence:
 6. **Abstention Check**  
    If the answer is not grounded in context, the model explicitly refuses.
 
-## ⚖️ Inference Modes: RAG vs Non-RAG
+##  Inference Modes: RAG vs Non-RAG
 
 The system supports two inference modes for comparison and evaluation:
 
@@ -138,10 +139,10 @@ hallucination-aware-hybrid-llm/
 
 ---
 
-## ✅ SECTION 5 — Example Behavior (VERY GOOD FOR DEMOS)
+## SECTION 5 — Example Behavior (VERY GOOD FOR DEMOS)
 
 ```markdown
-## 🧪 Example Behavior
+##  Example Behavior
 
 | Mode | Question | Output |
 |-----|---------|--------|
@@ -163,7 +164,7 @@ hallucination-aware-hybrid-llm/
 | UI | Streamlit |
 | Deployment | Hugging Face Spaces |
 
-## 🔮 Future Improvements
+## Future Improvements
 
 - Confidence-based abstention scoring
 - Cross-encoder reranking for improved retrieval precision
@@ -172,11 +173,4 @@ hallucination-aware-hybrid-llm/
 - Token-level document attribution
 - Self-verification and reflection loops
 
-## 🔮 Future Improvements
 
-- Confidence-based abstention scoring
-- Cross-encoder reranking for improved retrieval precision
-- Adaptive top-K retrieval
-- Hallucination rate benchmarking
-- Token-level document attribution
-- Self-verification and reflection loops
