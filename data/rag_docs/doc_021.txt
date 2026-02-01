@@ -1,0 +1,1 @@
+Security Best Practices: Rotate API keys quarterly. Never commit credentials to version control. Use environment variables for secrets. Enable MFA on user accounts. Restrict IP addresses for API access. Use VPC endpoints for private connectivity.

@@ -1,0 +1,1 @@
+Monitoring & Alerts: Set alerts for CPU >80%, memory >85%, disk >90%. Monitor API latency percentiles (p50, p95, p99). Track error rates and alert when >1% of requests fail. Log all authentication failures. Review metrics daily.

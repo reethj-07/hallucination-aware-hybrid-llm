@@ -1,0 +1,1 @@
+Rate Limiting: Standard tier allows 1000 requests per minute. Premium tier allows 10000 requests per minute. Enterprise tier has custom limits. Rate limits reset at UTC midnight daily. Exceeding limits returns 429 Too Many Requests status.

@@ -10,3 +10,5 @@ streamlit
 numpy<2
 scipy
 requests
+pytest
+slowapi

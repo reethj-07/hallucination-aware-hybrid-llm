@@ -1,0 +1,1 @@
+Microservices Architecture: The platform consists of 7 independent microservices: Auth Service, API Gateway, Data Processing, Storage Service, Cache Layer, Search Service, and Notification Service. Services communicate via gRPC with service discovery via Consul.

@@ -1,0 +1,1 @@
+Search Capabilities: Full-text search across all document types. Advanced query syntax with AND, OR, NOT operators. Faceted search with filters. Elasticsearch backend ensures sub-100ms query latency. Custom analyzers for domain-specific terms.

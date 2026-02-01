@@ -1,0 +1,1 @@
+Deployment Pipeline: Changes go through develop → staging → production. Each stage has automated tests, security scanning, and performance benchmarking. Canary deployments reduce blast radius. Rollback available within 60 seconds.

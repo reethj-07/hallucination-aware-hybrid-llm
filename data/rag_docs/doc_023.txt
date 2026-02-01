@@ -1,0 +1,1 @@
+Testing Strategy: Unit tests for all business logic (>80% coverage). Integration tests for API endpoints. Performance tests under load (1000+ concurrent users). Security tests for SQL injection and XSS. Staging environment must mirror production.

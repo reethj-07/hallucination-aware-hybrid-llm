@@ -1,0 +1,1 @@
+Data Residency: Data stored exclusively in selected region (US, EU, APAC, or single country). No cross-border data transfers. Compliant with GDPR, LGPD, and local data protection laws.

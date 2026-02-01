@@ -1,0 +1,1 @@
+Error Codes: 400 Bad Request (invalid params), 401 Unauthorized (missing/invalid auth), 403 Forbidden (insufficient permissions), 404 Not Found (resource missing), 429 Too Many Requests (rate limited), 500 Internal Server Error (backend failure), 503 Service Unavailable (maintenance).

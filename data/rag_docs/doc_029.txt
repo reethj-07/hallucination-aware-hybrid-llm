@@ -1,0 +1,1 @@
+Deprecation Notice: Scheduled removal of OAuth 1.0 support (June 2025). SOAP endpoints deprecated (Sept 2025). XML response format deprecated (Dec 2025). Customers notified 6 months before removal.

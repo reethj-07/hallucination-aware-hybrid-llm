@@ -1,15 +1,39 @@
-# Models & weights
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.coverage
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints
+
+# Environment
+.env
+venv/
+
+# Models & weights (generated locally)
 models/
 *.safetensors
 
-# Python cache
-__pycache__/
-*.pyc
-
-# Environments
-venv/
-.env
 # FAISS artifacts (generated locally)
 rag/faiss_index/
 rag/*.index
 rag/*.pkl
+
+# Logs
+logs/*.jsonl
+*.log
+
+# OS
+Thumbs.db

@@ -1,0 +1,1 @@
+Single Sign-On (SSO): SAML 2.0 and OAuth 2.0 supported. Just-in-time provisioning for new users. Automatic group sync from identity provider. Audit logs for access control changes.

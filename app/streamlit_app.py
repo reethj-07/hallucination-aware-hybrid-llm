@@ -21,6 +21,10 @@ if st.button("Submit"):
                 use_rag=use_rag
             )
 
+        if result.get("error"):
+            st.error(f"RAG error: {result['error']}")
+            st.caption("Falling back to non-RAG response.")
+
         st.markdown("### ✅ Answer")
         st.write(result["answer"])
         st.caption(f"RAG used: {result['used_rag']}")

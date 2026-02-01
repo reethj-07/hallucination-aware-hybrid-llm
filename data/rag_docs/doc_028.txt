@@ -1,0 +1,1 @@
+Known Issues v2.1.0: Occasional sync delays (5-30s) when processing >10k events/sec. Export to older Excel versions may truncate long fields. WebSocket connections timeout after 24 hours idle.

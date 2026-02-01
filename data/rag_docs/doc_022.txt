@@ -1,0 +1,1 @@
+Scalability Guidelines: Design stateless services for horizontal scaling. Use message queues for async processing. Implement circuit breakers. Cache aggressively. Shard data when table exceeds 100GB. Monitor resource utilization trends.

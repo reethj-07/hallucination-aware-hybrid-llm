@@ -1,9 +1,15 @@
+import logging
+import os
+
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
 
-BASE_MODEL_ID = "microsoft/Phi-3-mini-4k-instruct"
-LORA_PATH = "models/phi3_lora_final"
+logger = logging.getLogger(__name__)
+
+BASE_MODEL_ID = os.getenv("BASE_MODEL_ID", "microsoft/Phi-3-mini-4k-instruct")
+LORA_PATH = os.getenv("LORA_PATH", "models/phi3_lora_final")
+DEFAULT_MAX_NEW_TOKENS = int(os.getenv("MAX_NEW_TOKENS", "120"))
 
 _model = None
 _tokenizer = None
@@ -14,7 +20,7 @@ def load_model():
     if _model is not None:
         return
 
-    print("🚀 Loading Phi-3 + LoRA (CPU)…")
+    logger.info("Loading Phi-3 + LoRA (CPU)…")
 
     _tokenizer = AutoTokenizer.from_pretrained(
         BASE_MODEL_ID,
@@ -29,6 +35,9 @@ def load_model():
         attn_implementation="eager"
     )
 
+    if not os.path.exists(LORA_PATH):
+        logger.warning("LoRA path not found at %s", LORA_PATH)
+
     _model = PeftModel.from_pretrained(
         base_model,
         LORA_PATH,
@@ -38,18 +47,21 @@ def load_model():
     _model.config.use_cache = False
     _model.eval()
 
-    print("✅ Phi-3 + LoRA ready")
+    logger.info("Phi-3 + LoRA ready")
 
 
-def generate_text(prompt: str) -> str:
+def generate_text(prompt: str, max_new_tokens: int | None = None) -> str:
     load_model()
+
+    if max_new_tokens is None:
+        max_new_tokens = DEFAULT_MAX_NEW_TOKENS
 
     inputs = _tokenizer(prompt, return_tensors="pt")
 
     with torch.no_grad():
         output = _model.generate(
             **inputs,
-            max_new_tokens=120,
+            max_new_tokens=max_new_tokens,
             do_sample=False,
             pad_token_id=_tokenizer.eos_token_id
         )

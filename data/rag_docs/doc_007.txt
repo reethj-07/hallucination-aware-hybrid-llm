@@ -1,0 +1,1 @@
+Disaster Recovery: RPO (Recovery Point Objective) is 5 minutes. RTO (Recovery Time Objective) is 15 minutes. Daily backups stored in multiple regions. Automated failover tested monthly. Disaster recovery drills conducted quarterly.
