@@ -1,77 +1,161 @@
 {
-  "total_queries": 10,
-  "correct_retrievals": 8,
-  "correct_abstentions": 0,
+  "total": 15,
+  "correct_retrieval": 0,
+  "correct_abstention": 2,
+  "hallucinations_prevented": 13,
+  "avg_em": 0.13333333333333333,
+  "avg_f1": 0.13333333333333333,
+  "avg_citation_precision": 0.0,
   "queries": [
     {
       "query": "What is the rate limit for Standard tier API?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": false,
       "should_find": true,
-      "found": true,
-      "success": true,
-      "top_doc": "Rate Limiting: Standard tier allows 1000 requests per minute. Premium tier allows 10000 requests per"
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
     },
     {
-      "query": "How do I connect to a PostgreSQL database?",
+      "query": "What status code is returned when rate limit is exceeded?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": false,
       "should_find": true,
-      "found": true,
-      "success": true,
-      "top_doc": "Database Connections: Connect to PostgreSQL 12+, MySQL 8+, or MongoDB 4.4+. Connection pooling is re"
-    },
-    {
-      "query": "What error code is returned when rate limit exceeded?",
-      "should_find": true,
-      "found": true,
-      "success": true,
-      "top_doc": "Rate Limiting: Standard tier allows 1000 requests per minute. Premium tier allows 10000 requests per"
-    },
-    {
-      "query": "What is the RTO in disaster recovery?",
-      "should_find": true,
-      "found": true,
-      "success": true,
-      "top_doc": "Disaster Recovery: RPO (Recovery Point Objective) is 5 minutes. RTO (Recovery Time Objective) is 15 "
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
     },
     {
       "query": "How do I enable MFA on my account?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": false,
       "should_find": true,
       "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
+    },
+    {
+      "query": "What is the RTO for disaster recovery?",
+      "answer_snippet": "Not found in retrieved documents",
       "success": false,
-      "top_doc": "Single Sign-On (SSO): SAML 2.0 and OAuth 2.0 supported. Just-in-time provisioning for new users. Aut"
+      "should_find": true,
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
     },
     {
-      "query": "What quantum computing features are available?",
-      "should_find": false,
-      "found": true,
+      "query": "How do I connect to PostgreSQL securely?",
+      "answer_snippet": "Not found in retrieved documents",
       "success": false,
-      "top_doc": "Custom Integrations: Zapier integration connects to 5000+ apps. Webhooks enable custom workflows. IF"
-    },
-    {
-      "query": "What is SOC 2 certification about?",
       "should_find": true,
-      "found": true,
-      "success": true,
-      "top_doc": "Security Compliance: SOC 2 Type II certified. GDPR, HIPAA, and PCI-DSS compliant. Data encrypted at-"
-    },
-    {
-      "query": "How do I export data to S3?",
-      "should_find": true,
-      "found": true,
-      "success": true,
-      "top_doc": "Data Export: Export to CSV, JSON, Parquet, or Arrow formats. Scheduled exports available daily, week"
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
     },
     {
       "query": "What is the data retention for Premium tier?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": false,
       "should_find": true,
-      "found": true,
-      "success": true,
-      "top_doc": "Missing Historical Data: Data retention depends on plan tier. Free tier: 7 days, Standard: 30 days, "
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
     },
     {
       "query": "How do I configure webhooks?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": false,
       "should_find": true,
-      "found": true,
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
+    },
+    {
+      "query": "What encryption is used at rest and in transit?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": false,
+      "should_find": true,
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
+    },
+    {
+      "query": "What are the supported database engines?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": false,
+      "should_find": true,
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
+    },
+    {
+      "query": "What is the uptime SLA for enterprise plans?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": false,
+      "should_find": true,
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
+    },
+    {
+      "query": "What is the response time objective (RTO) and recovery point objective (RPO)?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": false,
+      "should_find": true,
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
+    },
+    {
+      "query": "How often are API keys rotated?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": false,
+      "should_find": true,
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
+    },
+    {
+      "query": "Do you support OAuth 1.0?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": false,
+      "should_find": true,
+      "found": false,
+      "em": 0.0,
+      "f1": 0.0,
+      "citation_precision": 0.0
+    },
+    {
+      "query": "What quantum computing features are available?",
+      "answer_snippet": "Not found in retrieved documents",
       "success": true,
-      "top_doc": "Webhook Integration: Webhooks deliver real-time events to your application. Configure webhooks in Se"
+      "should_find": false,
+      "found": false,
+      "em": 1.0,
+      "f1": 1.0,
+      "citation_precision": 0.0
+    },
+    {
+      "query": "Does the platform support blockchain smart contracts?",
+      "answer_snippet": "Not found in retrieved documents",
+      "success": true,
+      "should_find": false,
+      "found": false,
+      "em": 1.0,
+      "f1": 1.0,
+      "citation_precision": 0.0
     }
   ]
 }

@@ -1,0 +1,15 @@
+{"query": "What is the rate limit for Standard tier API?", "expected_keywords": ["1000", "requests", "minute"], "should_find": true}
+{"query": "What status code is returned when rate limit is exceeded?", "expected_keywords": ["429", "Too Many Requests"], "should_find": true}
+{"query": "How do I enable MFA on my account?", "expected_keywords": ["MFA", "security"], "should_find": true}
+{"query": "What is the RTO for disaster recovery?", "expected_keywords": ["15 minutes"], "should_find": true}
+{"query": "How do I connect to PostgreSQL securely?", "expected_keywords": ["PostgreSQL", "SSL", "TLS"], "should_find": true}
+{"query": "What is the data retention for Premium tier?", "expected_keywords": ["90 days"], "should_find": true}
+{"query": "How do I configure webhooks?", "expected_keywords": ["webhooks", "Settings"], "should_find": true}
+{"query": "What encryption is used at rest and in transit?", "expected_keywords": ["AES-256", "TLS 1.3"], "should_find": true}
+{"query": "What are the supported database engines?", "expected_keywords": ["PostgreSQL", "MySQL", "MongoDB"], "should_find": true}
+{"query": "What is the uptime SLA for enterprise plans?", "expected_keywords": ["99.99%"], "should_find": true}
+{"query": "What is the response time objective (RTO) and recovery point objective (RPO)?", "expected_keywords": ["RTO", "15 minutes", "RPO", "5 minutes"], "should_find": true}
+{"query": "How often are API keys rotated?", "expected_keywords": ["quarterly", "rotate"], "should_find": true}
+{"query": "Do you support OAuth 1.0?", "expected_keywords": ["deprecated"], "should_find": true}
+{"query": "What quantum computing features are available?", "expected_keywords": [], "should_find": false}
+{"query": "Does the platform support blockchain smart contracts?", "expected_keywords": [], "should_find": false}

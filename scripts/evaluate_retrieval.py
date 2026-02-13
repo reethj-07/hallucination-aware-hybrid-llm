@@ -77,7 +77,7 @@ def run_retrieval_eval():
     with open(docs_path, "rb") as f:
         documents = pickle.load(f)
     
-    embedder = SentenceTransformer("all-MiniLM-L6-v2")
+    embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
     
     results = {
         "total_queries": len(BENCHMARK_QUERIES),
@@ -92,12 +92,15 @@ def run_retrieval_eval():
         expected_keywords = test_case["expected_keywords"]
         
         # Retrieve top-3 documents
-        query_emb = embedder.encode([query])
+        query_emb = embedder.encode([query], normalize_embeddings=True)
         distances, indices = index.search(query_emb, k=3)
         retrieved_docs = [documents[i] for i in indices[0] if i < len(documents)]
         
         # Check if keywords present in retrieved docs
-        combined_text = " ".join(retrieved_docs).lower()
+        def _doc_text(doc):
+            return doc.get("text", "") if isinstance(doc, dict) else str(doc)
+
+        combined_text = " ".join(_doc_text(doc) for doc in retrieved_docs).lower()
         has_keywords = all(kw.lower() in combined_text for kw in expected_keywords)
         
         # Retrieval success if: (should_find and has_keywords) or (not should_find and no keywords)
@@ -111,7 +114,8 @@ def run_retrieval_eval():
         status = "✅" if success else "❌"
         print(f"{status} Q{idx}: {query[:55]}...")
         print(f"   Expected: {'Find' if should_find else 'Abstain'} | Result: {'Found' if has_keywords else 'Not found'}")
-        print(f"   Top doc: {retrieved_docs[0][:80]}...")
+        top_doc = _doc_text(retrieved_docs[0]) if retrieved_docs else ""
+        print(f"   Top doc: {top_doc[:80]}...")
         print()
         
         results["queries"].append({
@@ -119,7 +123,7 @@ def run_retrieval_eval():
             "should_find": should_find,
             "found": has_keywords,
             "success": success,
-            "top_doc": retrieved_docs[0][:100]
+            "top_doc": top_doc[:100]
         })
     
     print("=" * 70)

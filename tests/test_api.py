@@ -20,7 +20,21 @@ def test_generate(monkeypatch):
 
 def test_query(monkeypatch):
     client = TestClient(api_main.app)
-    monkeypatch.setattr(api_main, "run_rag_pipeline", lambda query, use_rag=True: {"answer": "ok"})
+    monkeypatch.setattr(
+        api_main,
+        "run_rag_pipeline",
+        lambda query, use_rag=True: {
+            "query": query,
+            "answer": "ok",
+            "used_rag": use_rag,
+            "retrieved_documents": [],
+        },
+    )
     response = client.post("/query", json={"query": "hi", "use_rag": True})
     assert response.status_code == 200
-    assert response.json() == {"answer": "ok"}
+    payload = response.json()
+    assert payload["answer"] == "ok"
+    assert payload["query"] == "hi"
+    assert payload["used_rag"] is True
+    assert payload["retrieved_documents"] == []
+    assert payload["citations"] == []

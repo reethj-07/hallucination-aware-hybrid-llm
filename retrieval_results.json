@@ -1,0 +1,143 @@
+{
+  "total": 15,
+  "total_keywords_found": 13,
+  "avg_precision": 1.0,
+  "avg_recall": 0.20903823303332394,
+  "queries": [
+    {
+      "query": "What is the rate limit for Standard tier API?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.014563106796116505,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2356
+    },
+    {
+      "query": "What status code is returned when rate limit is exceeded?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.01904761904761905,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2352
+    },
+    {
+      "query": "How do I enable MFA on my account?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.009708737864077669,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2270
+    },
+    {
+      "query": "What is the RTO for disaster recovery?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.004830917874396135,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2252
+    },
+    {
+      "query": "How do I connect to PostgreSQL securely?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.013824884792626729,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2326
+    },
+    {
+      "query": "What is the data retention for Premium tier?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.0049504950495049506,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2209
+    },
+    {
+      "query": "How do I configure webhooks?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.010309278350515464,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2256
+    },
+    {
+      "query": "What encryption is used at rest and in transit?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.01485148514851485,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2238
+    },
+    {
+      "query": "What are the supported database engines?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.014354066985645933,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2239
+    },
+    {
+      "query": "What is the uptime SLA for enterprise plans?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2292
+    },
+    {
+      "query": "What is the response time objective (RTO) and recovery point objective (RPO)?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.014634146341463415,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2289
+    },
+    {
+      "query": "How often are API keys rotated?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.00980392156862745,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2333
+    },
+    {
+      "query": "Do you support OAuth 1.0?",
+      "should_find": true,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 0.004694835680751174,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2251
+    },
+    {
+      "query": "What quantum computing features are available?",
+      "should_find": false,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2574
+    },
+    {
+      "query": "Does the platform support blockchain smart contracts?",
+      "should_find": false,
+      "found_all_keywords": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "retrieved_doc_count": 10,
+      "retrieved_chars": 2156
+    }
+  ]
+}

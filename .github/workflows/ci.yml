@@ -7,6 +7,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      RAG_RERANK: "false"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,6 +26,12 @@ jobs:
 
       - name: Run unit tests
         run: pytest -q
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Type check
+        run: mypy .
 
       - name: Build production knowledge base
         run: |

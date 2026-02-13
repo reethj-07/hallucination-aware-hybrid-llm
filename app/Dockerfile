@@ -2,25 +2,18 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# System deps
 RUN apt-get update && apt-get install -y \
-    git \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Python deps
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# App code
 COPY . .
 
-# Expose API port
-EXPOSE 8000
+EXPOSE 8501
 
-# Healthcheck
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8501')"
 
-# Start FastAPI only
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["streamlit", "run", "app/streamlit_app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]

@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - API_KEY=${API_KEY:-}
+      - CORS_ALLOW_ORIGINS=${CORS_ALLOW_ORIGINS:-*}
+      - RATE_LIMIT=${RATE_LIMIT:-60/minute}
+      - REQUEST_TIMEOUT_S=${REQUEST_TIMEOUT_S:-20}
+      - RAG_INDEX_PATH=rag/faiss_index/index.faiss
+      - RAG_DOCS_PATH=rag/faiss_index/docs.pkl
+      - RAG_EMBED_MODEL=sentence-transformers/all-MiniLM-L6-v2
+      - RAG_TOP_K=${RAG_TOP_K:-3}
+      - RAG_CANDIDATES_K=${RAG_CANDIDATES_K:-10}
+      - RAG_RERANK=${RAG_RERANK:-true}
+      - RAG_MAX_CONTEXT_CHARS=${RAG_MAX_CONTEXT_CHARS:-4000}
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+
+  ui:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    environment:
+      - API_URL=http://api:8000
+      - API_KEY=${API_KEY:-}
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    volumes:
+      - .:/app
