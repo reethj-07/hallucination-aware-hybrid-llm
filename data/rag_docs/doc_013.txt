@@ -1,0 +1,1 @@
+Collaboration Features: Real-time collaboration on documents with conflict resolution. Comments and mentions for team communication. Role-based access control with granular permissions. Activity audit logs track all changes.

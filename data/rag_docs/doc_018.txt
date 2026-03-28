@@ -1,0 +1,1 @@
+Missing Historical Data: Data retention depends on plan tier. Free tier: 7 days, Standard: 30 days, Premium: 90 days, Enterprise: 1 year. Export data before retention expiry. Archive to cold storage. Contact support to extend retention.

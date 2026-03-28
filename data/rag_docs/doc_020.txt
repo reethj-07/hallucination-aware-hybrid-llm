@@ -1,0 +1,1 @@
+Query Optimization: Use indexes on frequently filtered columns. Avoid SELECT * in large tables. Use pagination with limit/offset. Batch operations when possible. Cache results for repeated queries. Monitor slow query logs.

@@ -1,0 +1,1 @@
+Roadmap Q1 2025: GraphQL subscriptions. Machine learning-powered recommendations. Enhanced analytics dashboard. API versioning strategy. Mobile app public beta.

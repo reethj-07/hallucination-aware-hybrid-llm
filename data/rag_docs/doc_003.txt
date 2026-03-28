@@ -1,0 +1,1 @@
+Webhook Integration: Webhooks deliver real-time events to your application. Configure webhooks in Settings > Webhooks. Retry failed deliveries up to 5 times exponentially. Verify webhook signatures using HMAC-SHA256 with your webhook secret.

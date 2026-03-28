@@ -1,0 +1,1 @@
+Real-time Data Streaming: Stream data using WebSocket connections or Server-Sent Events. Guaranteed delivery with at-least-once semantics. Batch processing available for non-real-time use cases. Maximum message size 10MB.

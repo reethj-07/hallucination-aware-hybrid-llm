@@ -1,0 +1,6 @@
+Large language models do not have direct access to external knowledge sources at
+inference time. Their responses are limited to patterns learned during training.
+
+As a result, they may generate outdated, incorrect, or fabricated information when
+prompted beyond their knowledge scope. External grounding mechanisms such as RAG
+are required to mitigate these limitations.

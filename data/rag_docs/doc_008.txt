@@ -1,0 +1,1 @@
+Security Compliance: SOC 2 Type II certified. GDPR, HIPAA, and PCI-DSS compliant. Data encrypted at-rest using AES-256 and in-transit using TLS 1.3. Penetration testing performed quarterly by third-party auditors.

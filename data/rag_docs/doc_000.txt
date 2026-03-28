@@ -1,0 +1,1 @@
+REST API v2.1 Authentication: All API endpoints require an X-API-Key header with a valid API key. Generate API keys in the dashboard under Settings > API Keys. API keys expire after 90 days of inactivity and must be rotated annually for security compliance.

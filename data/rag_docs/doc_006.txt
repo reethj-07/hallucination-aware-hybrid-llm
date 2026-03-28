@@ -1,0 +1,1 @@
+High Availability: All services run on Kubernetes with minimum 3 replicas per pod. Database uses primary-replica replication with automatic failover. Redis cluster provides distributed caching. Load balancers route traffic across availability zones.

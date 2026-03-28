@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.coverage
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints
+
+# Environment
+.env
+venv/
+
+# Models & weights (generated locally)
+models/
+*.safetensors
+
+# FAISS artifacts (generated locally)
+rag/faiss_index/
+rag/*.index
+rag/*.pkl
+
+# Logs
+logs/*.jsonl
+*.log
+
+# Versioned outputs
+results/*.json
+results/*.csv
+!results/.gitkeep
+
+# OS
+Thumbs.db

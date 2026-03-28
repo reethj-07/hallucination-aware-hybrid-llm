@@ -1,0 +1,1 @@
+Advanced Permissioning: Row-level security (RLS) for data isolation. Column-level encryption for sensitive fields. Attribute-based access control (ABAC). Time-based access restrictions. IP whitelist/blacklist enforcement.

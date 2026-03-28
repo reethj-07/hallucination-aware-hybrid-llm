@@ -1,0 +1,1 @@
+Custom Integrations: Zapier integration connects to 5000+ apps. Webhooks enable custom workflows. IFTTT support for simple automations. Custom API endpoints for enterprise customers.

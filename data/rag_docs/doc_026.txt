@@ -1,0 +1,1 @@
+v2.0.0 Release (Dec 2024): Complete API redesign with cleaner REST conventions. Kubernetes-native deployment. Multi-region failover. Webhook retry logic enhanced. Deprecation period: 6 months for v1 endpoints.

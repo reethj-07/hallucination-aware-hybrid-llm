@@ -1,0 +1,1 @@
+Connection Timeout Issues: Check internet connectivity first. Verify API endpoint is reachable via curl or ping. Ensure firewall allows outbound HTTPS on port 443. Check API key validity. Contact support with request ID from logs if problem persists.

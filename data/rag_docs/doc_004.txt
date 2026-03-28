@@ -1,0 +1,1 @@
+Database Connections: Connect to PostgreSQL 12+, MySQL 8+, or MongoDB 4.4+. Connection pooling is recommended for production. SSL/TLS required for external connections. Connection strings use format: driver://user:password@host:port/database.

@@ -1,0 +1,1 @@
+Performance Degradation: Check dashboard status page for service incidents. Verify personal API rate limits in Settings. Reduce query complexity if fetching large datasets. Enable caching headers. Contact support for dedicated investigation.
