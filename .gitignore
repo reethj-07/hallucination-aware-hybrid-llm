@@ -21,6 +21,8 @@ __pycache__/
 # Environment
 .env
 venv/
+.venv/
+.venv311/
 
 # Models & weights (generated locally)
 models/
